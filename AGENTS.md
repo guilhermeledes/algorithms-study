@@ -53,7 +53,6 @@ Each problem directory should contain this standard study package:
 - `solution.test.ts`
 - `explanation.md`
 - `notes.md`
-- `testcases.json`
 
 Layout rules:
 
@@ -92,7 +91,6 @@ Required study-case artifacts for each problem:
 - `studies/hackerrank/<path>/solution.test.ts`: lightweight local validation
 - `studies/hackerrank/<path>/explanation.md`: didactic explanation of brute force, optimized reasoning, pattern, and interview framing
 - `studies/hackerrank/<path>/notes.md`: compact revision sheet for later review
-- `studies/hackerrank/<path>/testcases.json`: reusable examples covering normal, edge, and tricky cases
 - study-case Markdown files: the place to preserve the original HackerRank path such as `Prepare > Data Structures > Stacks > Balanced Brackets`
 
 Other future sources of truth, if and when they are introduced:
