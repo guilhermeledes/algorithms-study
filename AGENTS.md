@@ -30,8 +30,9 @@ Use this operating sequence unless the repository later adopts a more specific d
 4. Implement the smallest TypeScript solution that satisfies those expectations.
 5. Add or run lightweight problem-level validation alongside the solution.
 6. Update `studies/hackerrank/index.md` when a new problem study case is added.
-7. Promote repeated structural conventions into repository docs only after they become stable across multiple problems.
-8. If future handoff or spec files are introduced, record continuity there rather than in `AGENTS.md`.
+7. When a problem naturally has a brute-force baseline and a stronger optimized approach, preserve both explicitly in code and tests.
+8. Promote repeated structural conventions into repository docs only after they become stable across multiple problems.
+9. If future handoff or spec files are introduced, record continuity there rather than in `AGENTS.md`.
 
 Some workflow artifacts referenced here may be added later. They are expected future patterns, not current required files.
 
@@ -93,6 +94,16 @@ Required study-case artifacts for each problem:
 - `studies/hackerrank/<path>/notes.md`: compact revision sheet for later review
 - study-case Markdown files: the place to preserve the original HackerRank path such as `Prepare > Data Structures > Stacks > Balanced Brackets`
 
+Preferred study-case code and test pattern when applicable:
+
+- In `solution.ts`, export separate brute-force and optimized functions when the problem meaningfully supports both approaches.
+- Use explicit names such as `<problemName>Brute` and `<problemName>Optimized` instead of overloading one function name with changing meaning.
+- If the user wants to implement one version later, scaffold it with a `Not implemented` stub rather than omitting the export.
+- In `solution.test.ts`, define one shared `cases` table and reuse it across implementations.
+- Prefer looped `describe` blocks over hand-written duplicated tests when the same expectations should hold for multiple implementations.
+- Keep the brute-force tests passing before scaffolding the optimized suite so unfinished work is isolated and obvious.
+- When an optimized implementation is intentionally stubbed, keep its tests present and let them fail with `Not implemented` until the implementation is added.
+
 Other future sources of truth, if and when they are introduced:
 
 - `README.md`: repository overview and contributor-facing quick start
@@ -113,6 +124,7 @@ These supporting files do not currently exist and should not be treated as prese
 
 - Ensure any new structure remains consistent with this file.
 - Run the relevant lightweight validation for changed study cases.
+- When multiple implementations exist, verify which suites are expected to pass and which are intentionally scaffolded.
 - Update documentation only when the change introduces a durable convention.
 - Update `studies/hackerrank/index.md` whenever a new study case is added.
 - Put continuity notes in designated future handoff files if those are later added; do not store session state in `AGENTS.md`.
@@ -133,6 +145,7 @@ Parallel work is not currently operationally necessary in this repository, but d
 - Do not treat assumptions in this file as permanent decisions.
 - Capture new durable rules once they recur often enough to be worth standardizing.
 - Keep naming and categorization aligned with HackerRank's own hierarchy when that information is available.
+- Keep scaffold conventions consistent once they recur, especially shared case tables and explicit brute/optimized export naming.
 
 ## Open Ambiguities
 
