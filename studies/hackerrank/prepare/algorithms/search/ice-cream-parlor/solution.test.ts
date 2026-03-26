@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { bruteForce, optimized } from "./solution.js";
+import { iceCreamParlorBrute, iceCreamParlorOptimized } from "./solution.js";
 
 const cases = [
   {
@@ -53,27 +53,27 @@ const cases = [
   },
 ] as const;
 
-describe("bruteForce", () => {
+describe("iceCreamParlorBrute", () => {
   for (const testCase of cases) {
     it(`${testCase.name}: money=${testCase.money} and costs=${testCase.costs}`, () => {
-      expect(bruteForce(testCase.money, [...testCase.costs])).toEqual(testCase.expected);
+      expect(iceCreamParlorBrute(testCase.money, [...testCase.costs])).toEqual(testCase.expected);
     });
   }
 });
 
-describe("optimized", () => {
+describe("iceCreamParlorOptimized", () => {
   for (const testCase of cases) {
     it(`${testCase.name}: money=${testCase.money} and costs=${testCase.costs}`, () => {
-      expect(optimized(testCase.money, [...testCase.costs])).toEqual(testCase.expected);
+      expect(iceCreamParlorOptimized(testCase.money, [...testCase.costs])).toEqual(testCase.expected);
     });
   }
 });
 
-describe("bruteForce and optimized parity", () => {
+describe("iceCreamParlor parity", () => {
   for (const testCase of cases) {
     it(`returns the same answer for ${testCase.name.toLowerCase()}`, () => {
-      expect(optimized(testCase.money, [...testCase.costs])).toEqual(
-        bruteForce(testCase.money, [...testCase.costs]),
+      expect(iceCreamParlorOptimized(testCase.money, [...testCase.costs])).toEqual(
+        iceCreamParlorBrute(testCase.money, [...testCase.costs]),
       );
     });
   }

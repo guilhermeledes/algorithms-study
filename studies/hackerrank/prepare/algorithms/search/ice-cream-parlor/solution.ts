@@ -23,8 +23,8 @@
  * Two-sum / hash lookup.
  *
  * Brute force vs optimized:
- * - `bruteForce`: try every pair of indices
- * - `optimized`: preprocess prices into a map, then match each unique price to
+ * - `iceCreamParlorBrute`: try every pair of indices
+ * - `iceCreamParlorOptimized`: preprocess prices into a map, then match each unique price to
  *   its complement in O(1) lookup time
  *
  * Important edge cases:
@@ -35,15 +35,15 @@
  * - returned indices must stay 1-based and ascending
  *
  * Time complexity:
- * - `bruteForce`: O(n^2)
- * - `optimized`: O(n)
+ * - `iceCreamParlorBrute`: O(n^2)
+ * - `iceCreamParlorOptimized`: O(n)
  *
  * Space complexity:
- * - `bruteForce`: O(1) auxiliary space
- * - `optimized`: O(n)
+ * - `iceCreamParlorBrute`: O(1) auxiliary space
+ * - `iceCreamParlorOptimized`: O(n)
  */
 
-export function bruteForce(money: number, prices: number[]): number[] {
+export function iceCreamParlorBrute(money: number, prices: number[]): number[] {
   const result: number[] = [];
 
   for (let idxA = 0; idxA < prices.length; idxA++) {
@@ -82,7 +82,7 @@ function buildMap(arr: number[]): Map<number, number[]> {
   return result;
 }
 
-export function optimized(money: number, prices: number[]): number[] {
+export function iceCreamParlorOptimized(money: number, prices: number[]): number[] {
   const hashPrices = buildMap(prices);
 
   for (const [price, idxs] of hashPrices) {
@@ -107,5 +107,5 @@ export function optimized(money: number, prices: number[]): number[] {
 }
 
 export function icecreamParlor(m: number, arr: number[]): number[] {
-  return optimized(m, arr);
+  return iceCreamParlorOptimized(m, arr);
 }
