@@ -1,52 +1,80 @@
 import { describe, expect, it } from "vitest";
 
-import { isBalanced, isBalancedBruteForce } from "./solution.js";
+import { isBalancedBruteForce, isBalancedOptimized } from "./solution.js";
 
-describe("isBalanced", () => {
-  it("returns YES for the sample balanced cases", () => {
-    expect(isBalanced("{[()]}")).toBe("YES");
-    expect(isBalanced("{{[[(())]]}}")).toBe("YES");
-  });
+const cases = [
+  {
+    name: "returns YES for the first sample balanced case",
+    input: "{[()]}",
+    expected: "YES",
+  },
+  {
+    name: "returns YES for the second sample balanced case",
+    input: "{{[[(())]]}}",
+    expected: "YES",
+  },
+  {
+    name: "returns NO for the sample unbalanced case",
+    input: "{[(])}",
+    expected: "NO",
+  },
+  {
+    name: "rejects a string that starts with a closing bracket",
+    input: "]",
+    expected: "NO",
+  },
+  {
+    name: "rejects mismatched closing before matching openers",
+    input: "}{",
+    expected: "NO",
+  },
+  {
+    name: "rejects leftover opening brackets",
+    input: "(((",
+    expected: "NO",
+  },
+  {
+    name: "rejects a partial unfinished nesting",
+    input: "{[(",
+    expected: "NO",
+  },
+  {
+    name: "accepts the empty string in the local study model",
+    input: "",
+    expected: "YES",
+  },
+  {
+    name: "catches crossed nesting",
+    input: "([)]",
+    expected: "NO",
+  },
+  {
+    name: "accepts nested and repeated valid pairs",
+    input: "{[()()]}",
+    expected: "YES",
+  },
+] as const;
 
-  it("returns NO for the sample unbalanced case", () => {
-    expect(isBalanced("{[(])}")).toBe("NO");
-  });
+describe("isBalancedBruteForce", () => {
+  for (const testCase of cases) {
+    it(testCase.name, () => {
+      expect(isBalancedBruteForce(testCase.input)).toBe(testCase.expected);
+    });
+  }
+});
 
-  it("rejects strings that start with a closing bracket", () => {
-    expect(isBalanced("]")).toBe("NO");
-    expect(isBalanced("}{")).toBe("NO");
-  });
+describe("isBalancedOptimized", () => {
+  for (const testCase of cases) {
+    it(testCase.name, () => {
+      expect(isBalancedOptimized(testCase.input)).toBe(testCase.expected);
+    });
+  }
+});
 
-  it("rejects strings with leftover opening brackets", () => {
-    expect(isBalanced("(((")).toBe("NO");
-    expect(isBalanced("{[(")).toBe("NO");
-  });
-
-  it("accepts the empty string as balanced in the local study model", () => {
-    expect(isBalanced("")).toBe("YES");
-  });
-
-  it("catches crossed nesting", () => {
-    expect(isBalanced("([)]")).toBe("NO");
-    expect(isBalanced("{[()()]}")).toBe("YES");
-  });
-
-  it("matches the brute-force reference implementation on representative inputs", () => {
-    const inputs = [
-      "{[()]}",
-      "{[(])}",
-      "{{[[(())]]}}",
-      "]",
-      "}{",
-      "(((",
-      "{[(",
-      "",
-      "([)]",
-      "{[()()]}",
-    ];
-
-    for (const input of inputs) {
-      expect(isBalanced(input)).toBe(isBalancedBruteForce(input));
-    }
-  });
+describe("isBalanced parity", () => {
+  for (const testCase of cases) {
+    it(`returns the same answer for ${testCase.name.toLowerCase()}`, () => {
+      expect(isBalancedOptimized(testCase.input)).toBe(isBalancedBruteForce(testCase.input));
+    });
+  }
 });

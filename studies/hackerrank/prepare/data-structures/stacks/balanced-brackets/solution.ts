@@ -3,7 +3,8 @@
  * HackerRank path: Prepare > Data Structures > Stacks > Balanced Brackets
  *
  * HackerRank expects the exact function signature `isBalanced(s: string): string`,
- * so the study solution keeps that contract and exports it for local tests.
+ * so this file keeps that wrapper while also exporting explicit brute-force and
+ * optimized study functions for local comparison.
  *
  * Main idea:
  * Use a stack to track opening brackets and match each closing bracket as it appears.
@@ -14,7 +15,7 @@
  * Brute force vs optimized:
  * This file includes both:
  * - `isBalancedBruteForce`: repeatedly remove adjacent pairs until the string stops changing
- * - `isBalanced`: the optimized one-pass stack solution used as the final answer
+ * - `isBalancedOptimized`: the optimized one-pass stack solution used as the final answer
  *
  * The brute-force version works, but repeated string rebuilding is less direct and can degrade
  * toward quadratic time. A stack solves it in one left-to-right pass.
@@ -50,7 +51,7 @@ export function isBalancedBruteForce(s: string): string {
   }
 }
 
-export function isBalanced(s: string): string {
+export function isBalancedOptimized(s: string): string {
   const stack: string[] = [];
 
   for (const bracket of s) {
@@ -68,4 +69,8 @@ export function isBalanced(s: string): string {
   }
 
   return stack.length === 0 ? "YES" : "NO";
+}
+
+export function isBalanced(s: string): string {
+  return isBalancedOptimized(s);
 }
