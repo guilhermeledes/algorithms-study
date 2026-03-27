@@ -1,58 +1,122 @@
-# HackerRank Study Index
+# Study Index
 
 
-| Problem           | Difficulty | Tags           | HackerRank Path                                        | Pattern | Status  | Directory                                                            |
-| ----------------- | ---------- | -------------- | ------------------------------------------------------ | ------- | ------- | -------------------------------------------------------------------- |
-| Balanced Brackets | Easy       | stack, strings | Prepare > Data Structures > Stacks > Balanced Brackets | stack   | studied | studies/hackerrank/prepare/data-structures/stacks/balanced-brackets/ |
-| Number of Matching Subsequences | Medium | strings, subsequence, binary-search | N/A | subsequence | scaffolded | studies/hackerrank/number-of-matching-subsequences/ |
-| Ice Cream Parlor | Easy | arrays, hashing, two-sum, search | Prepare > Algorithms > Search > Ice Cream Parlor | two-sum | scaffolded | studies/hackerrank/prepare/algorithms/search/ice-cream-parlor/ |
+| Problem                         | Difficulty | Tags                                | Pattern Group                       | Pattern         | Status     | Directory                                                            |
+| ------------------------------- | ---------- | ----------------------------------- | ----------------------------------- | --------------- | ---------- | -------------------------------------------------------------------- |
+| Balanced Brackets               | Easy       | stack, strings                      | Stack                               | stack           | studied    | studies/hackerrank/prepare/data-structures/stacks/balanced-brackets/ |
+| Number of Matching Subsequences | Medium     | strings, subsequence, binary-search | Hash Map / Frequency / Strings      | subsequence     | studied    | studies/hackerrank/number-of-matching-subsequences/                  |
+| Ice Cream Parlor                | Easy       | arrays, hashing, two-sum, search    | Hash Map / Frequency / Strings      | two-sum         | studied    | studies/hackerrank/prepare/algorithms/search/ice-cream-parlor/       |
+| Remove Islands                  | Medium     | matrix, graph, dfs, bfs             | DFS / BFS / Grid / Graph Traversal  | graph traversal | studied    | studies/hackerrank/remove-islands/                                   |
 
 
 
-## Checklist
+## Checklist by Pattern
+
+### Stack
 
 - [x] Balanced Brackets
-- [ ] Ice Cream Parlor
-- [ ] The Maximum Subarray
+- [ ] Queue Using Two Stacks
+- [ ] Largest Rectangle
+
+### Hash Map / Frequency / Strings
+
+- [x] Ice Cream Parlor
 - [ ] Strings: Making Anagrams
-- [ ] DFS: Connected Cell in a Grid
 - [ ] Ransom Note
 - [ ] Two Strings
 - [ ] Sherlock and Anagrams
-- [ ] Queue Using Two Stacks
-- [ ] Largest Rectangle
+- [ ] Frequency Queries
+
+### Arrays / Scans / DP-lite
+
+- [x] The Maximum Subarray
+- [ ] Pairs
+
+### DFS / BFS / Grid / Graph Traversal
+
+- [ ] DFS: Connected Cell in a Grid
 - [ ] Castle on the Grid
+- [x] Remove Islands
+
+### Trees / Traversal / BST
+
 - [ ] Tree: Height of a Binary Tree
 - [ ] Tree: Level Order Traversal
 - [ ] Is This a Binary Search Tree?
+
+### Heap / Streaming / Ordering
+
 - [ ] Find the Running Median
-- [ ] Frequency Queries
-- [ ] Pairs
 
-## Suggested Priorities
+## Suggested Study Plan by Pattern
 
-### Highest priority for the upcoming CodePair
+### Phase 1 — Highest priority for the upcoming CodePair
 
-1. Balanced Brackets
-2. Ice Cream Parlor
-3. The Maximum Subarray
-4. Strings: Making Anagrams
-5. DFS: Connected Cell in a Grid
-6. Ransom Note
-7. Two Strings
-8. Queue Using Two Stacks
+1. Stack
+   - Balanced Brackets
+   - Queue Using Two Stacks
+2. Hash Map / Frequency / Strings
+   - Ice Cream Parlor
+   - Strings: Making Anagrams
+   - Ransom Note
+   - Two Strings
+3. Arrays / Scans / DP-lite
+   - The Maximum Subarray
 
-### Next layer
+### Phase 2 — Reinforcement
 
-9. Sherlock and Anagrams
-10. Largest Rectangle
-11. Frequency Queries
-12. Pairs
-13. Find the Running Median
+4. Stack
+   - Largest Rectangle
+5. Hash Map / Frequency / Strings
+   - Sherlock and Anagrams
+   - Frequency Queries
+6. Arrays / Scans / DP-lite
+   - Pairs
 
-### Good tree / traversal coverage
+### Phase 3 — Traversal coverage
 
-14. Tree: Height of a Binary Tree
-15. Tree: Level Order Traversal
-16. Is This a Binary Search Tree?
-17. Castle on the Grid
+7. DFS / BFS / Grid / Graph Traversal
+   - DFS: Connected Cell in a Grid
+   - Castle on the Grid
+   - Remove Islands
+8. Trees / Traversal / BST
+   - Tree: Height of a Binary Tree
+   - Tree: Level Order Traversal
+   - Is This a Binary Search Tree?
+9. Heap / Streaming / Ordering
+   - Find the Running Median
+
+## Post-Problem Reflection
+
+After each problem, answer:
+
+- Pattern:
+- Recognition clue:
+- Brute-force idea:
+- Final optimization:
+- Time complexity:
+- Space complexity:
+- Main mistake risk:
+- Can I explain this in 60 seconds?
+
+## Interview Reminders
+
+- Prioritize pattern recognition over memorizing solutions.
+- Always restate the problem before coding.
+- Ask clarifying questions when input or constraints are ambiguous.
+- Mention brute force first when helpful, then optimize.
+- Explain trade-offs and chosen data structures.
+- Test with a normal case, an edge case, and a tricky case.
+- Think out loud consistently during CodePair.
+
+## Glossary
+
+- **DP**: Dynamic Programming
+- **DFS**: Depth-First Search
+- **BFS**: Breadth-First Search
+- **BST**: Binary Search Tree
+- **CodePair**: Live collaborative coding interview environment used in HackerRank
+- **Two-sum**: Common problem pattern where you find two values that satisfy a target sum
+- **Scaffolded**: Study case folder and files created, but problem not fully solved/reviewed yet
+- **Studied**: Problem already solved, documented, and reviewed
+- **DP-lite**: Problems that use light dynamic programming intuition or linear-state optimization, without heavy DP formulation

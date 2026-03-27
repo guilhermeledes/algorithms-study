@@ -125,6 +125,7 @@ These supporting files do not currently exist and should not be treated as prese
 - Ensure any new structure remains consistent with this file.
 - Run the relevant lightweight validation for changed study cases.
 - When multiple implementations exist, verify which suites are expected to pass and which are intentionally scaffolded.
+- Update `studies/hackerrank/index.md` status entries to reflect the final state of the study case before creating a commit.
 - Update documentation only when the change introduces a durable convention.
 - Update `studies/hackerrank/index.md` whenever a new study case is added.
 - Put continuity notes in designated future handoff files if those are later added; do not store session state in `AGENTS.md`.
