@@ -145,6 +145,7 @@ Parallel work is not currently operationally necessary in this repository, but d
 ## Change Discipline
 
 - Keep `AGENTS.md`, future `README.md`, and any future templates aligned as the repository matures.
+- Keep the repo-local skill at `.codex/skills/algorithm-study-case/SKILL.md` aligned with the repository workflow when study-package conventions change.
 - Update workflow guidance only when repository practice has actually changed.
 - Do not treat assumptions in this file as permanent decisions.
 - Capture new durable rules once they recur often enough to be worth standardizing.
