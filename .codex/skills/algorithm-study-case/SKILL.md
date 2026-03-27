@@ -1,6 +1,6 @@
 ---
 name: algorithm-study-case
-description: Create or update a complete interview-study package for an algorithm or data-structure problem using this repository's platform-agnostic study layout. Use when Codex receives a problem title and statement and must generate or refine a dedicated `studies/problems/<problem-slug>/` package with TypeScript scaffolding or solution work, lightweight tests, explanation notes, revision notes, metadata, and synchronized study indexes.
+description: Create or update a complete interview-study package for an algorithm or data-structure problem using this repository's platform-agnostic study layout. Use when Codex receives a problem title and statement and must generate or refine a dedicated `studies/problems/<problem-slug>/` package, create the corresponding `solve/<problem-slug>` git worktree when needed, and keep TypeScript scaffolding or solution work, lightweight tests, explanation notes, revision notes, metadata, and synchronized study indexes aligned.
 ---
 
 # Algorithm Study Case
@@ -58,7 +58,33 @@ Interpretation rules:
 - If the current branch matches `solve/<problem-slug>` or the user explicitly asks for a real implementation, write the solved code and real assertions.
 - Do not silently put completed solutions on `main` if the repository workflow says `main` should remain unsolved.
 
-### 3. Create or update the study directory
+### 3. Create the solve worktree when a new challenge is introduced
+
+When a new challenge is being added to the repository, also create the dedicated solve worktree unless it already exists.
+
+Worktree rules:
+
+- use branch name `solve/<problem-slug>`
+- create the worktree under `/Users/guilhermeledes/projects/_worktrees/algorithms-study/`
+- use directory name `/Users/guilhermeledes/projects/_worktrees/algorithms-study/solve-<problem-slug>`
+- if the worktree already exists, reuse it instead of creating a duplicate
+- if the current task is only refining metadata or docs for an existing problem, do not create another worktree
+
+Preferred command:
+
+```bash
+git worktree add /Users/guilhermeledes/projects/_worktrees/algorithms-study/solve-<problem-slug> -b solve/<problem-slug>
+```
+
+If the branch already exists but the worktree does not, use:
+
+```bash
+git worktree add /Users/guilhermeledes/projects/_worktrees/algorithms-study/solve-<problem-slug> solve/<problem-slug>
+```
+
+If worktree creation fails because the branch or path is already in use, inspect existing worktrees and reuse or report the conflict clearly instead of guessing.
+
+### 4. Create or update the study directory
 
 Create or update:
 
@@ -97,6 +123,7 @@ Also create or update:
 - Make the package useful under interview pressure and later review.
 - Preserve source details in `meta.md` and Markdown rather than in the directory tree.
 - Follow this repository's scaffold-only `main` branch model unless the user explicitly requests a different workflow.
+- When creating a new challenge, create or confirm the corresponding solve worktree as part of the task, not as a separate optional follow-up.
 
 ## File Guidance
 
@@ -305,8 +332,9 @@ For every problem:
 When using this skill, return:
 
 1. the directory path created or updated
-2. the list of files created or updated
-3. a concise summary of whether the work was scaffold-only or a solved implementation
-4. validation status if tests or type checks were run
+2. the worktree branch and path created or reused, when applicable
+3. the list of files created or updated
+4. a concise summary of whether the work was scaffold-only or a solved implementation
+5. validation status if tests or type checks were run
 
 Do not default to dumping the full contents of every file unless the user explicitly asks for them.

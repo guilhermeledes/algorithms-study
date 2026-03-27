@@ -9,7 +9,8 @@ The default workflow is TypeScript-first. Keep validation lightweight and local 
 The branch model is intentional:
 
 - `main` is the scaffold branch and should keep problem folders ready for future practice rather than storing completed solutions.
-- Completed or in-progress solved implementations should live on separate branches, preferably named `solve/<problem-slug>`.
+- Completed or in-progress solved implementations should live on separate branches, preferably named `solve/<problem-slug>`, and those branches should be created and used through separate git worktrees.
+- Store challenge worktrees under `/Users/guilhermeledes/projects/_worktrees/algorithms-study/` so worktrees from different repositories do not mix together.
 - If a long-lived branch is ever used to accumulate solved work, prefer a name such as `solutions/archive`.
 
 ## Where To Start
@@ -45,7 +46,7 @@ When working against `main`:
 1. Treat `main` as the branch for reusable scaffolding and study planning.
 2. Keep `solution.ts` scaffolded with explicit stubs such as `Not implemented` when the actual solution should remain unsolved on `main`.
 3. Keep tests aligned with the scaffold state on `main`, for example by skipping solution assertions or asserting the current stub behavior.
-4. Use a dedicated branch such as `solve/<problem-slug>` for real solved implementations and finished solution notes.
+4. Use a dedicated git worktree on a branch such as `solve/<problem-slug>` for real solved implementations and finished solution notes, and place that worktree under `/Users/guilhermeledes/projects/_worktrees/algorithms-study/solve-<problem-slug>`.
 5. Merge back only scaffold improvements, metadata improvements, or workflow/docs changes if `main` must remain unsolved.
 
 ## Repository Layout
@@ -122,7 +123,7 @@ Preferred study-case code and test pattern when applicable:
 - Read `AGENTS.md` before changing conventions.
 - Match any new study work to `studies/problems/<problem-slug>/`.
 - Preserve source details exactly when they are provided in the prompt or source material.
-- Confirm whether the current task is intended for scaffold-only `main` or for a dedicated `solve/<problem-slug>` branch.
+- Confirm whether the current task is intended for scaffold-only `main` or for a dedicated `solve/<problem-slug>` worktree.
 
 ### End
 
@@ -151,7 +152,7 @@ Parallel work is not currently operationally necessary in this repository, but d
 - Capture new durable rules once they recur often enough to be worth standardizing.
 - Keep source-specific details attached to the relevant problem, not baked into global structure.
 - Keep scaffold conventions consistent once they recur, especially shared case tables and explicit brute/optimized export naming.
-- Use `solve/<problem-slug>` as the default naming pattern for branches that contain completed solutions.
+- Use `solve/<problem-slug>` as the default naming pattern for worktree branches that contain completed solutions.
 - Use Conventional Commits for every git commit message, such as `feat: ...`, `fix: ...`, `refactor: ...`, `docs: ...`, or `chore: ...`.
 
 ## Current State

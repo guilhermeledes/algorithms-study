@@ -7,8 +7,12 @@ This repository is organized around self-contained study cases. A problem may co
 The repository also uses a branch workflow designed for repeated study:
 
 - `main` keeps the scaffolding, roadmap, metadata, and unsolved study packages.
-- solved implementations should live on dedicated branches, preferably `solve/<problem-slug>`.
+- solved implementations should live on dedicated git worktrees, preferably on branches named `solve/<problem-slug>`.
 - if you want a long-lived branch with accumulated solved work, use something like `solutions/archive`.
+
+Worktrees should be stored under a dedicated root so they do not get mixed with sibling repositories:
+
+- `/Users/guilhermeledes/projects/_worktrees/algorithms-study/<worktree-name>`
 
 ## Stack
 
@@ -81,16 +85,29 @@ pnpm check-types
 Use this branch model by default:
 
 - `main`: scaffold-only branch for future practice
-- `solve/<problem-slug>`: completed or in-progress implementation for one problem
+- `solve/<problem-slug>` worktree: completed or in-progress implementation for one problem
 - `solutions/archive`: optional long-lived branch with accumulated solved work
 
 Rules:
 
 - keep `main` ready for re-study, not as the permanent home of finished solutions
+- create solution branches as separate git worktrees instead of solving directly inside the main worktree
+- keep challenge worktrees under `/Users/guilhermeledes/projects/_worktrees/algorithms-study/`
 - prefer `Not implemented` stubs in `solution.ts` on `main` when a problem should remain unsolved there
 - keep tests on `main` aligned with the scaffold state by skipping unsolved suites or asserting stub behavior
-- keep real solution assertions on the corresponding `solve/<problem-slug>` branch
+- keep real solution assertions on the corresponding `solve/<problem-slug>` worktree branch
 - merge back only scaffold, docs, metadata, and workflow improvements if you want `main` to remain unsolved
+
+Suggested worktree naming:
+
+- branch: `solve/<problem-slug>`
+- directory: `/Users/guilhermeledes/projects/_worktrees/algorithms-study/solve-<problem-slug>`
+
+Example:
+
+```bash
+git worktree add /Users/guilhermeledes/projects/_worktrees/algorithms-study/solve-balanced-brackets -b solve/balanced-brackets
+```
 
 ## Study Package Conventions
 
