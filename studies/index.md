@@ -5,6 +5,7 @@
 | Balanced Brackets               | HackerRank    | Easy       | stack, strings                      | Stack                              | stack             | scaffolded | studies/problems/balanced-brackets/              |
 | Ice Cream Parlor                | HackerRank    | Easy       | arrays, hashing, two-sum, search    | Hash Map / Frequency / Strings     | two-sum           | scaffolded | studies/problems/ice-cream-parlor/               |
 | Number of Matching Subsequences | Unspecified   | Medium     | strings, subsequence, binary-search | Hash Map / Frequency / Strings     | subsequence       | scaffolded | studies/problems/number-of-matching-subsequences/ |
+| Queue using Two Stacks          | HackerRank    | Unknown    | queues, stacks, simulation, amortized-analysis | Queue / Stack Simulation           | queue via two stacks | scaffolded | studies/problems/queue-using-two-stacks/         |
 | Remove Islands                  | Unspecified   | Medium     | matrix, graph, dfs, bfs             | DFS / BFS / Grid / Graph Traversal | graph traversal   | scaffolded | studies/problems/remove-islands/                 |
 
 ## Post-Problem Reflection
