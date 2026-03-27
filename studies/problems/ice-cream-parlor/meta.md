@@ -8,4 +8,4 @@
 - Tags: arrays, hashing, two-sum, search
 - Pattern Group: Hash Map / Frequency / Strings
 - Pattern: two-sum
-- Status: scaffolded
+- Status: studied
