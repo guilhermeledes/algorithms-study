@@ -6,6 +6,12 @@ This repository is a coding-practice workspace for interview-style algorithm and
 
 The default workflow is TypeScript-first. Keep validation lightweight and local to each problem. Do not assume there is an application, service, deployment flow, or broader platform architecture.
 
+The branch model is intentional:
+
+- `main` is the scaffold branch and should keep problem folders ready for future practice rather than storing completed solutions.
+- Completed or in-progress solved implementations should live on separate branches, preferably named `solve/<problem-slug>`.
+- If a long-lived branch is ever used to accumulate solved work, prefer a name such as `solutions/archive`.
+
 ## Where To Start
 
 At the beginning of each session:
@@ -34,6 +40,14 @@ Use this sequence unless the repository later adopts a more specific documented 
 8. When a problem naturally has a brute-force baseline and a stronger optimized approach, preserve both explicitly in code and tests.
 9. Promote repeated structural conventions into repository docs only after they become stable across multiple problems.
 
+When working against `main`:
+
+1. Treat `main` as the branch for reusable scaffolding and study planning.
+2. Keep `solution.ts` scaffolded with explicit stubs such as `Not implemented` when the actual solution should remain unsolved on `main`.
+3. Keep tests aligned with the scaffold state on `main`, for example by skipping solution assertions or asserting the current stub behavior.
+4. Use a dedicated branch such as `solve/<problem-slug>` for real solved implementations and finished solution notes.
+5. Merge back only scaffold improvements, metadata improvements, or workflow/docs changes if `main` must remain unsolved.
+
 ## Repository Layout
 
 The default study layout is:
@@ -57,6 +71,7 @@ Layout rules:
 - Keep source-platform details in `meta.md` and the study Markdown files, not in the directory tree.
 - Preserve the original source taxonomy or URL when it is known.
 - If the source is unknown or informal, record that explicitly in `meta.md`.
+- Keep problem scaffolds on `main` even when solved implementations exist on separate branches.
 - Keep temporary scratch work out of the study directory.
 - If the repository later adds other languages, document that explicitly before changing the default TypeScript-first layout.
 
@@ -66,6 +81,7 @@ Layout rules:
 - Treat the standard study package as the default contract for each problem in this repository.
 - Keep problem requirements, assumptions, and acceptance expectations in the study-case materials.
 - Add validation alongside each solution whenever practical.
+- On `main`, prefer validation that preserves the unsolved scaffold state instead of embedding completed answers.
 - Do not invent formal process artifacts before there is repeated need for them.
 - Promote repeated conventions into docs only after they become stable across more than one problem.
 - Prefer one source of truth per topic.
@@ -92,11 +108,11 @@ Preferred study-case code and test pattern when applicable:
 
 - In `solution.ts`, export separate brute-force and optimized functions when the problem meaningfully supports both approaches.
 - Use explicit names such as `<problemName>Brute` and `<problemName>Optimized` instead of overloading one function name with changing meaning.
-- If the user wants to implement one version later, scaffold it with a `Not implemented` stub rather than omitting the export.
+- If `main` should remain unsolved, scaffold future implementations with a `Not implemented` stub rather than omitting the export.
 - In `solution.test.ts`, define one shared `cases` table and reuse it across implementations.
 - Prefer looped `describe` blocks over hand-written duplicated tests when the same expectations should hold for multiple implementations.
-- Keep the brute-force tests passing before scaffolding the optimized suite so unfinished work is isolated and obvious.
-- When an optimized implementation is intentionally stubbed, keep its tests present and let them fail with `Not implemented` until the implementation is added.
+- On `main`, keep tests passing in a way that matches the scaffold state, for example by skipping not-yet-solved suites or by asserting stub behavior explicitly.
+- On solution branches, enable the real behavioral assertions for the solved implementation.
 
 ## Session Discipline
 
@@ -106,6 +122,7 @@ Preferred study-case code and test pattern when applicable:
 - Read `AGENTS.md` before changing conventions.
 - Match any new study work to `studies/problems/<problem-slug>/`.
 - Preserve source details exactly when they are provided in the prompt or source material.
+- Confirm whether the current task is intended for scaffold-only `main` or for a dedicated `solve/<problem-slug>` branch.
 
 ### End
 
@@ -115,6 +132,7 @@ Preferred study-case code and test pattern when applicable:
 - Update `studies/index.md` status entries to reflect the final state of the study case.
 - Update `studies/roadmap.md` only when planning data changed.
 - Update documentation only when the change introduces a durable convention.
+- Do not merge solved implementations back into `main` unless the repository workflow is intentionally being changed.
 
 ## Parallel Work
 
@@ -132,10 +150,12 @@ Parallel work is not currently operationally necessary in this repository, but d
 - Capture new durable rules once they recur often enough to be worth standardizing.
 - Keep source-specific details attached to the relevant problem, not baked into global structure.
 - Keep scaffold conventions consistent once they recur, especially shared case tables and explicit brute/optimized export naming.
+- Use `solve/<problem-slug>` as the default naming pattern for branches that contain completed solutions.
 - Use Conventional Commits for every git commit message, such as `feat: ...`, `fix: ...`, `refactor: ...`, `docs: ...`, or `chore: ...`.
 
 ## Current State
 
 - TypeScript, Vitest, and local problem-level validation are already configured.
 - The current study folders live under `studies/problems/`.
+- `main` is intended to preserve reusable scaffolding and study planning rather than act as the long-lived home for finished solutions.
 - The repository intentionally stays lightweight and does not require extra process files beyond the study materials and top-level indexes.
