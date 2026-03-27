@@ -8,4 +8,4 @@
 - Tags: matrix, graph, dfs, bfs, flood-fill
 - Pattern Group: DFS / BFS / Grid / Graph Traversal
 - Pattern: graph traversal
-- Status: scaffolded
+- Status: studied
