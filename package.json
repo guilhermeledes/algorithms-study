@@ -1,7 +1,7 @@
 {
-  "name": "hacker-rank",
+  "name": "algorithms-study",
   "private": true,
-  "description": "TypeScript-first HackerRank study workspace for interview practice.",
+  "description": "TypeScript-first interview problem study workspace.",
   "type": "module",
   "packageManager": "pnpm@10.26.1",
   "engines": {
@@ -11,7 +11,7 @@
     "check-types": "tsc --noEmit",
     "test": "vitest run --passWithNoTests",
     "test:watch": "vitest --passWithNoTests",
-    "study:test": "vitest run studies/hackerrank --passWithNoTests",
+    "study:test": "vitest run studies/problems --passWithNoTests",
     "study:file": "vitest run",
     "run": "tsx",
     "verify": "pnpm check-types && pnpm test"
