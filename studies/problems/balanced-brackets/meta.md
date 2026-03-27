@@ -8,4 +8,4 @@
 - Tags: stack, strings, parsing, balanced-parentheses
 - Pattern Group: Stack
 - Pattern: stack
-- Status: scaffolded
+- Status: studied
