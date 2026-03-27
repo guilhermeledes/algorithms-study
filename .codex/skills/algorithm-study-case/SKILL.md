@@ -60,6 +60,7 @@ Interpretation rules:
 - Keep test script behavior aligned with the branch role:
   - on `main`, `test` and `test:watch` stay global
   - on `solve/<problem-slug>` worktrees, both `test` and `test:watch` should target only `studies/problems/<problem-slug>`
+  - on `solve/<problem-slug>` worktrees, update `package.json` as part of the implementation task so those scripts are actually scoped before the branch is considered ready
   - do not introduce duplicate testing aliases such as `study:test` or `study:file`
 
 ### 3. Create the solve worktree when a new challenge is introduced
@@ -87,6 +88,13 @@ git worktree add /Users/guilhermeledes/projects/_worktrees/algorithms-study/solv
 ```
 
 If worktree creation fails because the branch or path is already in use, inspect existing worktrees and reuse or report the conflict clearly instead of guessing.
+
+After creating or reusing a solve worktree:
+
+- inspect that worktree's `package.json`
+- set `test` to `vitest run studies/problems/<problem-slug> --passWithNoTests`
+- set `test:watch` to `vitest studies/problems/<problem-slug> --passWithNoTests`
+- treat this script update as required setup, not optional cleanup
 
 ### 4. Create or update the study directory
 
@@ -175,6 +183,7 @@ Branch-aware behavior:
 - on `main`, keep the real behavioral assertions even when the implementation is still scaffolded
 - on solve branches, make those same assertions pass with the completed implementation
 - on solve branches, keep both `test` and `test:watch` scoped to the branch's own problem folder
+- on solve branches, verify the scoped scripts live in that worktree's `package.json` before handoff
 
 ### `explanation.md`
 

@@ -53,6 +53,7 @@ Testing command rules:
 
 - On `main`, keep `test` and `test:watch` global so they cover the full repository and expose unsolved scaffold failures.
 - In each `solve/<problem-slug>` worktree, scope both `test` and `test:watch` to `studies/problems/<problem-slug>` so the worktree stays green for its own challenge only.
+- In each `solve/<problem-slug>` worktree, update `package.json` as part of the branch setup so those scoped `test` and `test:watch` scripts are actually enforced before handoff.
 - Do not add duplicate testing aliases such as `study:test` or `study:file`.
 
 ## Repository Layout
@@ -131,12 +132,14 @@ Preferred study-case code and test pattern when applicable:
 - Match any new study work to `studies/problems/<problem-slug>/`.
 - Preserve source details exactly when they are provided in the prompt or source material.
 - Confirm whether the current task is intended for scaffold-only `main` or for a dedicated `solve/<problem-slug>` worktree.
+- If working in a `solve/<problem-slug>` worktree, verify that `package.json` scopes `test` and `test:watch` to `studies/problems/<problem-slug>` before treating the worktree as ready.
 
 ### End
 
 - Ensure any new structure remains consistent with this file.
 - Run the relevant lightweight validation for changed study cases.
 - When multiple implementations exist, verify which suites are expected to pass and which are intentionally scaffolded.
+- On a `solve/<problem-slug>` worktree, verify that `package.json` still scopes `test` and `test:watch` to that problem folder and that `pnpm test` does not run unrelated problem suites.
 - Update `studies/index.md` status entries to reflect the final state of the study case.
 - Update `studies/roadmap.md` only when planning data changed.
 - Update the solved-problems table in `README.md` whenever a challenge gains or loses a public solve branch.
