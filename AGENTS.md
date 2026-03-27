@@ -102,6 +102,7 @@ Current source of truth:
 - `AGENTS.md`: durable repository operating instructions for future agents
 - `studies/index.md`: global index of completed or in-progress study cases
 - `studies/roadmap.md`: future problem checklist and prioritization
+- `README.md`: public-facing overview, including the solved-problems branch table
 
 Required study-case artifacts for each problem:
 
@@ -138,6 +139,7 @@ Preferred study-case code and test pattern when applicable:
 - When multiple implementations exist, verify which suites are expected to pass and which are intentionally scaffolded.
 - Update `studies/index.md` status entries to reflect the final state of the study case.
 - Update `studies/roadmap.md` only when planning data changed.
+- Update the solved-problems table in `README.md` whenever a challenge gains or loses a public solve branch.
 - Update documentation only when the change introduces a durable convention.
 - Do not merge solved implementations back into `main` unless the repository workflow is intentionally being changed.
 
@@ -159,6 +161,7 @@ Parallel work is not currently operationally necessary in this repository, but d
 - Keep source-specific details attached to the relevant problem, not baked into global structure.
 - Keep scaffold conventions consistent once they recur, especially shared case tables and explicit brute/optimized export naming.
 - Use `solve/<problem-slug>` as the default naming pattern for worktree branches that contain completed solutions.
+- Keep the solved-problems table in `README.md` aligned with the actual published `solve/*` branches.
 - Use Conventional Commits for every git commit message, such as `feat: ...`, `fix: ...`, `refactor: ...`, `docs: ...`, or `chore: ...`.
 
 ## Current State

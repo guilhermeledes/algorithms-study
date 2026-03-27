@@ -108,6 +108,17 @@ Example:
 git worktree add /Users/guilhermeledes/projects/_worktrees/algorithms-study/solve-balanced-brackets -b solve/balanced-brackets
 ```
 
+## Solved Problems
+
+`main` stays scaffold-only. Completed solutions are published on the dedicated solve branches below.
+
+| Problem | Source | Solve Branch | Study Package |
+| --- | --- | --- | --- |
+| Balanced Brackets | HackerRank | [`solve/balanced-brackets`](https://github.com/guilhermeledes/algorithms-study/tree/solve/balanced-brackets) | [folder](https://github.com/guilhermeledes/algorithms-study/tree/solve/balanced-brackets/studies/problems/balanced-brackets) |
+| Ice Cream Parlor | HackerRank | [`solve/ice-cream-parlor`](https://github.com/guilhermeledes/algorithms-study/tree/solve/ice-cream-parlor) | [folder](https://github.com/guilhermeledes/algorithms-study/tree/solve/ice-cream-parlor/studies/problems/ice-cream-parlor) |
+| Number of Matching Subsequences | Unspecified | [`solve/number-of-matching-subsequences`](https://github.com/guilhermeledes/algorithms-study/tree/solve/number-of-matching-subsequences) | [folder](https://github.com/guilhermeledes/algorithms-study/tree/solve/number-of-matching-subsequences/studies/problems/number-of-matching-subsequences) |
+| Remove Islands | Unspecified | [`solve/remove-islands`](https://github.com/guilhermeledes/algorithms-study/tree/solve/remove-islands) | [folder](https://github.com/guilhermeledes/algorithms-study/tree/solve/remove-islands/studies/problems/remove-islands) |
+
 ## Study Package Conventions
 
 - Use one folder per problem.
