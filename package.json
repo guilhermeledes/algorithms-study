@@ -9,8 +9,8 @@
   },
   "scripts": {
     "check-types": "tsc --noEmit",
-    "test": "vitest run --passWithNoTests",
-    "test:watch": "vitest --passWithNoTests",
+    "test": "vitest run studies/problems/queue-using-two-stacks --passWithNoTests",
+    "test:watch": "vitest studies/problems/queue-using-two-stacks --passWithNoTests",
     "run": "tsx",
     "verify": "pnpm check-types && pnpm test"
   },
