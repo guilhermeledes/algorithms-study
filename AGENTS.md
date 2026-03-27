@@ -45,9 +45,15 @@ When working against `main`:
 
 1. Treat `main` as the branch for reusable scaffolding and study planning.
 2. Keep `solution.ts` scaffolded with explicit stubs such as `Not implemented` when the actual solution should remain unsolved on `main`.
-3. Keep tests aligned with the scaffold state on `main`, for example by skipping solution assertions or asserting the current stub behavior.
+3. Keep the real behavioral tests on `main` even when the implementation is scaffolded, so unsolved challenges fail loudly until they are solved in their dedicated worktrees.
 4. Use a dedicated git worktree on a branch such as `solve/<problem-slug>` for real solved implementations and finished solution notes, and place that worktree under `/Users/guilhermeledes/projects/_worktrees/algorithms-study/solve-<problem-slug>`.
 5. Merge back only scaffold improvements, metadata improvements, or workflow/docs changes if `main` must remain unsolved.
+
+Testing command rules:
+
+- On `main`, keep `test` and `test:watch` global so they cover the full repository and expose unsolved scaffold failures.
+- In each `solve/<problem-slug>` worktree, scope both `test` and `test:watch` to `studies/problems/<problem-slug>` so the worktree stays green for its own challenge only.
+- Do not add duplicate testing aliases such as `study:test` or `study:file`.
 
 ## Repository Layout
 
@@ -82,7 +88,7 @@ Layout rules:
 - Treat the standard study package as the default contract for each problem in this repository.
 - Keep problem requirements, assumptions, and acceptance expectations in the study-case materials.
 - Add validation alongside each solution whenever practical.
-- On `main`, prefer validation that preserves the unsolved scaffold state instead of embedding completed answers.
+- On `main`, prefer validation that preserves the real behavioral expectations, even if that means unsolved challenges fail with `Not implemented`.
 - Do not invent formal process artifacts before there is repeated need for them.
 - Promote repeated conventions into docs only after they become stable across more than one problem.
 - Prefer one source of truth per topic.
@@ -112,8 +118,8 @@ Preferred study-case code and test pattern when applicable:
 - If `main` should remain unsolved, scaffold future implementations with a `Not implemented` stub rather than omitting the export.
 - In `solution.test.ts`, define one shared `cases` table and reuse it across implementations.
 - Prefer looped `describe` blocks over hand-written duplicated tests when the same expectations should hold for multiple implementations.
-- On `main`, keep tests passing in a way that matches the scaffold state, for example by skipping not-yet-solved suites or by asserting stub behavior explicitly.
-- On solution branches, enable the real behavioral assertions for the solved implementation.
+- On `main`, keep the real test expectations present so scaffolded implementations fail until they are solved in their dedicated worktrees.
+- On solution worktrees, enable the real behavioral assertions for the solved implementation and scope both `test` and `test:watch` to that worktree's own problem folder.
 
 ## Session Discipline
 

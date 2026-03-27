@@ -2,10 +2,10 @@
 
 | Problem                         | Source        | Difficulty | Tags                                | Pattern Group                      | Pattern           | Status  | Directory                                        |
 | ------------------------------- | ------------- | ---------- | ----------------------------------- | ---------------------------------- | ----------------- | ------- | ------------------------------------------------ |
-| Balanced Brackets               | HackerRank    | Easy       | stack, strings                      | Stack                              | stack             | studied | studies/problems/balanced-brackets/              |
-| Ice Cream Parlor                | HackerRank    | Easy       | arrays, hashing, two-sum, search    | Hash Map / Frequency / Strings     | two-sum           | studied | studies/problems/ice-cream-parlor/               |
-| Number of Matching Subsequences | Unspecified   | Medium     | strings, subsequence, binary-search | Hash Map / Frequency / Strings     | subsequence       | studied | studies/problems/number-of-matching-subsequences/ |
-| Remove Islands                  | Unspecified   | Medium     | matrix, graph, dfs, bfs             | DFS / BFS / Grid / Graph Traversal | graph traversal   | studied | studies/problems/remove-islands/                 |
+| Balanced Brackets               | HackerRank    | Easy       | stack, strings                      | Stack                              | stack             | scaffolded | studies/problems/balanced-brackets/              |
+| Ice Cream Parlor                | HackerRank    | Easy       | arrays, hashing, two-sum, search    | Hash Map / Frequency / Strings     | two-sum           | scaffolded | studies/problems/ice-cream-parlor/               |
+| Number of Matching Subsequences | Unspecified   | Medium     | strings, subsequence, binary-search | Hash Map / Frequency / Strings     | subsequence       | scaffolded | studies/problems/number-of-matching-subsequences/ |
+| Remove Islands                  | Unspecified   | Medium     | matrix, graph, dfs, bfs             | DFS / BFS / Grid / Graph Traversal | graph traversal   | scaffolded | studies/problems/remove-islands/                 |
 
 ## Post-Problem Reflection
 

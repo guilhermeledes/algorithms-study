@@ -8,4 +8,4 @@
 - Tags: strings, subsequence, binary-search, preprocessing, two-pointers
 - Pattern Group: Hash Map / Frequency / Strings
 - Pattern: subsequence
-- Status: studied
+- Status: scaffolded

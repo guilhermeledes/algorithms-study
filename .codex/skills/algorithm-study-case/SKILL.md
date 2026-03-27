@@ -54,9 +54,13 @@ Interpretation rules:
 
 - If the current branch is `main`, treat the study package as scaffold-first unless the user explicitly says otherwise.
 - On `main`, prefer `Not implemented` stubs in `solution.ts` when the repository should preserve the problem for later practice.
-- On `main`, keep tests aligned with the scaffold state by skipping unsolved suites or asserting stub behavior.
+- On `main`, keep the real behavioral tests in place so scaffolded implementations fail until they are solved in their dedicated worktrees.
 - If the current branch matches `solve/<problem-slug>` or the user explicitly asks for a real implementation, write the solved code and real assertions.
 - Do not silently put completed solutions on `main` if the repository workflow says `main` should remain unsolved.
+- Keep test script behavior aligned with the branch role:
+  - on `main`, `test` and `test:watch` stay global
+  - on `solve/<problem-slug>` worktrees, both `test` and `test:watch` should target only `studies/problems/<problem-slug>`
+  - do not introduce duplicate testing aliases such as `study:test` or `study:file`
 
 ### 3. Create the solve worktree when a new challenge is introduced
 
@@ -168,8 +172,9 @@ Write a lightweight TypeScript practice test file.
 
 Branch-aware behavior:
 
-- on `main`, keep tests passing while preserving the unsolved scaffold state
-- on solve branches, enable the real behavioral assertions for the completed implementation
+- on `main`, keep the real behavioral assertions even when the implementation is still scaffolded
+- on solve branches, make those same assertions pass with the completed implementation
+- on solve branches, keep both `test` and `test:watch` scoped to the branch's own problem folder
 
 ### `explanation.md`
 

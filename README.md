@@ -60,7 +60,6 @@ Other useful commands:
 
 ```bash
 pnpm test
-pnpm study:test
 pnpm test:watch
 pnpm check-types
 ```
@@ -94,7 +93,7 @@ Rules:
 - create solution branches as separate git worktrees instead of solving directly inside the main worktree
 - keep challenge worktrees under `/Users/guilhermeledes/projects/_worktrees/algorithms-study/`
 - prefer `Not implemented` stubs in `solution.ts` on `main` when a problem should remain unsolved there
-- keep tests on `main` aligned with the scaffold state by skipping unsolved suites or asserting stub behavior
+- keep the real behavioral tests on `main` so unsolved challenges fail until they are solved in their dedicated worktrees
 - keep real solution assertions on the corresponding `solve/<problem-slug>` worktree branch
 - merge back only scaffold, docs, metadata, and workflow improvements if you want `main` to remain unsolved
 
