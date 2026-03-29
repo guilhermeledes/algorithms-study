@@ -1,25 +1,67 @@
 /*
  * The Maximum Subarray
- *
- * This file is intentionally scaffolded on `main`.
- * Use the corresponding `solve/maximum-subarray` worktree for the completed implementation.
  */
 
-const notImplementedMessage =
-  "Not implemented on main; use the solve/maximum-subarray worktree.";
-
 export function maxSubarrayBruteForce(arr: number[]): [number, number] {
-  void arr;
-  throw new Error(notImplementedMessage);
+  let bestSubarraySum = Number(arr[0]);
+  let bestSubsequenceSum = Number(arr[0]);
+  let positiveSum = 0;
+  let hasPositive = false;
+
+  for (let i = 0; i < arr.length; i++) {
+    let currentSubarraySum = 0;
+    const currI = Number(arr[i])
+
+    if (currI > 0) {
+      positiveSum += currI;
+      hasPositive = true;
+    } else if (currI > bestSubsequenceSum) {
+      bestSubsequenceSum = currI;
+    }
+
+    for (let j = i; j < arr.length; j++) {
+      currentSubarraySum += Number(arr[j]);
+
+      if (currentSubarraySum > bestSubarraySum) {
+        bestSubarraySum = currentSubarraySum;
+      }
+    }
+  }
+
+  if (hasPositive) {
+    bestSubsequenceSum = positiveSum;
+  }
+
+  return [bestSubarraySum, bestSubsequenceSum];
 }
 
 export function maxSubarrayOptimized(arr: number[]): [number, number] {
-  void arr;
-  throw new Error(notImplementedMessage);
+  let currentSubarraySum = 0
+  let bestSubarraySum = Number(arr[0])
+  let maxSequence = bestSubarraySum
+  let positiveSum = 0
+  let hasPositive = false
+  for (const curr of arr) {
+    currentSubarraySum += curr
+    if (curr > 0) {
+      hasPositive = true
+      positiveSum += curr
+    } else if (curr > maxSequence) {
+      maxSequence = curr
+    }
+    if (currentSubarraySum > bestSubarraySum) {
+      bestSubarraySum = currentSubarraySum
+    }
+    if (currentSubarraySum < 0) {
+      currentSubarraySum = 0
+    }
+  }
+  if (hasPositive) {
+    maxSequence = positiveSum
+  }
+  return [bestSubarraySum, maxSequence]
 }
 
-// HackerRank expects this exact function signature.
 export function maxSubarray(arr: number[]): [number, number] {
-  void arr;
-  throw new Error(notImplementedMessage);
+  return maxSubarrayOptimized(arr);
 }
