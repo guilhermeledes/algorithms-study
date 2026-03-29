@@ -1,33 +1,43 @@
 /*
  * Ransom Note
- *
- * This file is intentionally scaffolded on `main`.
- * Use the corresponding `solve/ransom-note` worktree for the completed implementation.
  */
-
-const notImplementedMessage =
-  "Not implemented on main; use the solve/ransom-note worktree.";
 
 export function canConstructRansomNoteBrute(
   magazine: readonly string[],
   note: readonly string[],
 ): "Yes" | "No" {
-  void magazine;
-  void note;
-  throw new Error(notImplementedMessage);
+  const mutableList = [...magazine]
+  for (const word of note) {
+    const idx = mutableList.indexOf(word)
+    if (idx === -1) {
+      return "No"
+    }
+    mutableList.splice(idx, 1)
+  }
+
+  return "Yes"
 }
 
 export function canConstructRansomNoteOptimized(
   magazine: readonly string[],
   note: readonly string[],
 ): "Yes" | "No" {
-  void magazine;
-  void note;
-  throw new Error(notImplementedMessage);
+  const magazineWords = new Map<string,number>
+  for (const word of magazine) {
+    magazineWords.set(word, (magazineWords.get(word) ?? 0) +1)
+  }
+
+  for (const word of note) {
+    const exists = magazineWords.get(word)
+    if (!exists) {
+      return "No"
+    }
+    magazineWords.set(word, exists-1)
+  }
+
+  return "Yes"
 }
 
 export function checkMagazine(magazine: string[], note: string[]): string {
-  void magazine;
-  void note;
-  throw new Error(notImplementedMessage);
+  return canConstructRansomNoteOptimized(magazine, note)
 }
