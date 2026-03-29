@@ -95,6 +95,7 @@ After creating or reusing a solve worktree:
 - inspect that worktree's `package.json`
 - set `test` to `vitest run studies/problems/<problem-slug> --passWithNoTests`
 - set `test:watch` to `vitest studies/problems/<problem-slug> --passWithNoTests`
+- ensure `<worktree>/node_modules` is a symbolic link to `/Users/guilhermeledes/projects/algorithms-study/node_modules` unless that path already exists intentionally
 - treat this script update as required setup, not optional cleanup
 - copy or keep the scaffolded study package there as the starting point for manual solving
 - do not implement the solution in that worktree unless the user explicitly asks for it
@@ -186,7 +187,7 @@ Branch-aware behavior:
 - on `main`, keep the real behavioral assertions even when the implementation is still scaffolded
 - on solve branches, make those same assertions pass with the completed implementation
 - on solve branches, keep both `test` and `test:watch` scoped to the branch's own problem folder
-- on solve branches, verify the scoped scripts live in that worktree's `package.json` before handoff
+- on solve branches, verify the scoped scripts live in that worktree's `package.json` and that `node_modules` links back to the main worktree before handoff
 
 ### `explanation.md`
 

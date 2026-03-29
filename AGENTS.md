@@ -55,6 +55,7 @@ Testing command rules:
 - On `main`, keep `test` and `test:watch` global so they cover the full repository and expose unsolved scaffold failures.
 - In each `solve/<problem-slug>` worktree, scope both `test` and `test:watch` to `studies/problems/<problem-slug>` so the worktree stays green for its own challenge only.
 - In each `solve/<problem-slug>` worktree, update `package.json` as part of the branch setup so those scoped `test` and `test:watch` scripts are actually enforced before handoff.
+- In each newly created `solve/<problem-slug>` worktree, create `node_modules` as a symbolic link to `/Users/guilhermeledes/projects/algorithms-study/node_modules` unless that path already exists for a deliberate reason.
 - Do not add duplicate testing aliases such as `study:test` or `study:file`.
 - Creating a new `solve/<problem-slug>` worktree is setup work only; leave the study package scaffolded there until the user explicitly asks to solve it.
 
@@ -135,14 +136,14 @@ Preferred study-case code and test pattern when applicable:
 - Preserve source details exactly when they are provided in the prompt or source material.
 - Confirm whether the current task is intended for scaffold-only `main` or for a dedicated `solve/<problem-slug>` worktree.
 - For newly created `solve/<problem-slug>` worktrees, assume scaffold-only setup unless the user explicitly asks for a solved implementation.
-- If working in a `solve/<problem-slug>` worktree, verify that `package.json` scopes `test` and `test:watch` to `studies/problems/<problem-slug>` before treating the worktree as ready.
+- If working in a `solve/<problem-slug>` worktree, verify that `package.json` scopes `test` and `test:watch` to `studies/problems/<problem-slug>` and that `node_modules` is linked back to the main worktree before treating the worktree as ready.
 
 ### End
 
 - Ensure any new structure remains consistent with this file.
 - Run the relevant lightweight validation for changed study cases.
 - When multiple implementations exist, verify which suites are expected to pass and which are intentionally scaffolded.
-- On a `solve/<problem-slug>` worktree, verify that `package.json` still scopes `test` and `test:watch` to that problem folder and that `pnpm test` does not run unrelated problem suites.
+- On a `solve/<problem-slug>` worktree, verify that `package.json` still scopes `test` and `test:watch` to that problem folder, that `node_modules` still points to the main worktree install, and that `pnpm test` does not run unrelated problem suites.
 - Update `studies/index.md` status entries to reflect the final state of the study case.
 - Update `studies/roadmap.md` only when planning data changed.
 - Update the solved-problems table in `README.md` whenever a challenge gains or loses a public solve branch.
