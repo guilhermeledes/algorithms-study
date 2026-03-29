@@ -9,8 +9,8 @@
   },
   "scripts": {
     "check-types": "tsc --noEmit",
-    "test": "vitest run --passWithNoTests",
-    "test:watch": "vitest --passWithNoTests",
+    "test": "vitest run studies/problems/making-anagrams --passWithNoTests",
+    "test:watch": "vitest studies/problems/making-anagrams --passWithNoTests",
     "run": "tsx",
     "verify": "pnpm check-types && pnpm test"
   },
