@@ -48,6 +48,7 @@ When working against `main`:
 3. Keep the real behavioral tests on `main` even when the implementation is scaffolded, so unsolved challenges fail loudly until they are solved in their dedicated worktrees.
 4. Use a dedicated git worktree on a branch such as `solve/<problem-slug>` for real solved implementations and finished solution notes, and place that worktree under `/Users/guilhermeledes/projects/_worktrees/algorithms-study/solve-<problem-slug>`.
 5. Merge back only scaffold improvements, metadata improvements, or workflow/docs changes if `main` must remain unsolved.
+6. When introducing a new challenge, do not pre-solve the corresponding `solve/<problem-slug>` worktree unless the user explicitly asks for the implementation.
 
 Testing command rules:
 
@@ -55,6 +56,7 @@ Testing command rules:
 - In each `solve/<problem-slug>` worktree, scope both `test` and `test:watch` to `studies/problems/<problem-slug>` so the worktree stays green for its own challenge only.
 - In each `solve/<problem-slug>` worktree, update `package.json` as part of the branch setup so those scoped `test` and `test:watch` scripts are actually enforced before handoff.
 - Do not add duplicate testing aliases such as `study:test` or `study:file`.
+- Creating a new `solve/<problem-slug>` worktree is setup work only; leave the study package scaffolded there until the user explicitly asks to solve it.
 
 ## Repository Layout
 
@@ -132,6 +134,7 @@ Preferred study-case code and test pattern when applicable:
 - Match any new study work to `studies/problems/<problem-slug>/`.
 - Preserve source details exactly when they are provided in the prompt or source material.
 - Confirm whether the current task is intended for scaffold-only `main` or for a dedicated `solve/<problem-slug>` worktree.
+- For newly created `solve/<problem-slug>` worktrees, assume scaffold-only setup unless the user explicitly asks for a solved implementation.
 - If working in a `solve/<problem-slug>` worktree, verify that `package.json` scopes `test` and `test:watch` to `studies/problems/<problem-slug>` before treating the worktree as ready.
 
 ### End

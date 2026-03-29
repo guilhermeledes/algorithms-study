@@ -36,7 +36,7 @@ Interpretation rules:
 - If a HackerRank learning path is provided, preserve it exactly in Markdown and metadata using the original hierarchy format, for example `Prepare > Data Structures > Stacks > Balanced Brackets`.
 - If `target_branch_role` is missing, infer it from the repository workflow:
   - on `main`, default to scaffold-first output
-  - on a branch such as `solve/<problem-slug>`, default to a solved implementation
+  - on a branch such as `solve/<problem-slug>`, default to scaffold-first setup unless the user explicitly asks for a solved implementation
 - If optional fields are missing, continue with reasonable assumptions and record them when they materially affect the explanation, metadata, or test coverage.
 
 ## Workflow
@@ -55,7 +55,8 @@ Interpretation rules:
 - If the current branch is `main`, treat the study package as scaffold-first unless the user explicitly says otherwise.
 - On `main`, prefer `Not implemented` stubs in `solution.ts` when the repository should preserve the problem for later practice.
 - On `main`, keep the real behavioral tests in place so scaffolded implementations fail until they are solved in their dedicated worktrees.
-- If the current branch matches `solve/<problem-slug>` or the user explicitly asks for a real implementation, write the solved code and real assertions.
+- If the current branch matches `solve/<problem-slug>`, keep it scaffold-only unless the user explicitly asks for a real implementation.
+- Only write solved code and passing real assertions on a solve branch when the user explicitly asks for the implementation.
 - Do not silently put completed solutions on `main` if the repository workflow says `main` should remain unsolved.
 - Keep test script behavior aligned with the branch role:
   - on `main`, `test` and `test:watch` stay global
@@ -95,6 +96,8 @@ After creating or reusing a solve worktree:
 - set `test` to `vitest run studies/problems/<problem-slug> --passWithNoTests`
 - set `test:watch` to `vitest studies/problems/<problem-slug> --passWithNoTests`
 - treat this script update as required setup, not optional cleanup
+- copy or keep the scaffolded study package there as the starting point for manual solving
+- do not implement the solution in that worktree unless the user explicitly asks for it
 
 ### 4. Create or update the study directory
 
@@ -135,7 +138,7 @@ Also create or update:
 - Make the package useful under interview pressure and later review.
 - Preserve source details in `meta.md` and Markdown rather than in the directory tree.
 - Follow this repository's scaffold-only `main` branch model unless the user explicitly requests a different workflow.
-- When creating a new challenge, create or confirm the corresponding solve worktree as part of the task, not as a separate optional follow-up.
+- When creating a new challenge, create or confirm the corresponding solve worktree as part of the task, but leave it scaffold-only unless implementation was explicitly requested.
 
 ## File Guidance
 
@@ -149,7 +152,7 @@ If the branch should remain scaffold-only:
 - use explicit `Not implemented` stubs where appropriate
 - document that the file is intentionally scaffolded for later practice
 
-If the branch is a solve branch:
+If the branch is a solve branch and the user explicitly asked for implementation:
 
 - implement the final solution
 - keep comments focused on reasoning and interview explanation
