@@ -1,27 +1,28 @@
 /*
  * Two Strings
- *
- * This file is intentionally scaffolded on `main`.
- * Use the corresponding `solve/two-strings` worktree for the completed implementation.
  */
 
-const notImplementedMessage =
-  "Not implemented on main; use the solve/two-strings worktree.";
-
 export function twoStringsBrute(s1: string, s2: string): string {
-  void s1;
-  void s2;
-  throw new Error(notImplementedMessage);
+  for (const c1 of s1) {
+    for (const c2 of s2) {
+      if (c1 === c2) {
+        return "YES"
+      }
+    }
+  }
+  return "NO"
 }
 
 export function twoStringsOptimized(s1: string, s2: string): string {
-  void s1;
-  void s2;
-  throw new Error(notImplementedMessage);
+  const m1 = new Set(s1)
+  for (const c2 of s2) {
+    if (m1.has(c2)) {
+      return "YES"
+    }
+  }
+  return "NO"
 }
 
 export function twoStrings(s1: string, s2: string): string {
-  void s1;
-  void s2;
-  throw new Error(notImplementedMessage);
+  return twoStringsOptimized(s1, s2)
 }
