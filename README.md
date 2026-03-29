@@ -66,18 +66,19 @@ pnpm check-types
 
 ## Adding a New Problem
 
-1. Create a folder under `studies/problems/<problem-slug>/`.
-2. Add these files:
+1. Create or reuse the dedicated `solve/<problem-slug>` worktree first.
+2. Create the study package under `studies/problems/<problem-slug>/` in that solve worktree.
+3. Add these files:
    - `solution.ts`
    - `solution.test.ts`
    - `explanation.md`
    - `notes.md`
    - `meta.md`
-3. Record the source platform and original taxonomy or URL in `meta.md`.
-4. Keep the implementation interview-friendly and TypeScript-first.
-5. Add lightweight local validation in `solution.test.ts`.
-6. Update `studies/index.md`.
-7. Update `studies/roadmap.md` only if the future study plan changed.
+4. Record the source platform and original taxonomy or URL in `meta.md`.
+5. Ask before creating the scaffold commit that will be merged to `main`.
+6. Merge the shared scaffold files back into `main` so `main` stays the home of unsolved study packages.
+7. After the merge, leave solve-worktree-only setup such as scoped `package.json` test scripts prepared in the solve worktree for the study session.
+8. Update `studies/roadmap.md` only if the future study plan changed.
 
 ## Branch Workflow
 
@@ -91,10 +92,12 @@ Rules:
 
 - keep `main` ready for re-study, not as the permanent home of finished solutions
 - create solution branches as separate git worktrees instead of solving directly inside the main worktree
+- for new problems, author the initial scaffold in the solve worktree first, then merge that scaffold into `main` after an explicit user-approved commit
 - keep challenge worktrees under `/Users/guilhermeledes/projects/_worktrees/algorithms-study/`
 - prefer `Not implemented` stubs in `solution.ts` on `main` when a problem should remain unsolved there
 - keep the real behavioral tests on `main` so unsolved challenges fail until they are solved in their dedicated worktrees
 - keep real solution assertions on the corresponding `solve/<problem-slug>` worktree branch
+- keep solve-worktree-specific `package.json` script scoping as local study-session setup after the scaffold has been merged into `main`
 - merge back only scaffold, docs, metadata, and workflow improvements if you want `main` to remain unsolved
 
 Suggested worktree naming:

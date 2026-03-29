@@ -37,6 +37,7 @@ Interpretation rules:
 - If `target_branch_role` is missing, infer it from the repository workflow:
   - on `main`, default to scaffold-first output
   - on a branch such as `solve/<problem-slug>`, default to scaffold-first setup unless the user explicitly asks for a solved implementation
+- For new-problem scaffolding, prefer creating the package in the solve worktree first, then merge the scaffold back into `main` after an explicit user-approved commit.
 - If optional fields are missing, continue with reasonable assumptions and record them when they materially affect the explanation, metadata, or test coverage.
 
 ## Workflow
@@ -61,7 +62,8 @@ Interpretation rules:
 - Keep test script behavior aligned with the branch role:
   - on `main`, `test` and `test:watch` stay global
   - on `solve/<problem-slug>` worktrees, both `test` and `test:watch` should target only `studies/problems/<problem-slug>`
-  - on `solve/<problem-slug>` worktrees, update `package.json` as part of the implementation task so those scripts are actually scoped before the branch is considered ready
+  - for newly introduced problems, leave those scoped solve-worktree scripts as branch-local study-session setup after the scaffold commit has been merged back into `main`
+  - do not merge solve-worktree-local script scoping into `main`
   - do not introduce duplicate testing aliases such as `study:test` or `study:file`
 
 ### 3. Create the solve worktree when a new challenge is introduced
@@ -92,12 +94,14 @@ If worktree creation fails because the branch or path is already in use, inspect
 
 After creating or reusing a solve worktree:
 
-- inspect that worktree's `package.json`
+- create the scaffolded study package there first instead of authoring the initial package directly on `main`
+- ensure `<worktree>/node_modules` is a symbolic link to `/Users/guilhermeledes/projects/algorithms-study/node_modules` unless that path already exists intentionally
+- ask the user before creating the scaffold commit that should be merged into `main`
+- after that commit exists, merge the scaffold and shared study-material changes back into `main`
+- only after the merge to `main`, inspect that worktree's `package.json`
 - set `test` to `vitest run studies/problems/<problem-slug> --passWithNoTests`
 - set `test:watch` to `vitest studies/problems/<problem-slug> --passWithNoTests`
-- ensure `<worktree>/node_modules` is a symbolic link to `/Users/guilhermeledes/projects/algorithms-study/node_modules` unless that path already exists intentionally
-- treat this script update as required setup, not optional cleanup
-- copy or keep the scaffolded study package there as the starting point for manual solving
+- leave those scoped script changes prepared in the solve worktree for the study session instead of merging them to `main`
 - do not implement the solution in that worktree unless the user explicitly asks for it
 
 ### 4. Create or update the study directory
@@ -128,6 +132,8 @@ Also create or update:
 - `studies/index.md`
 - `studies/roadmap.md` only when the plan actually changes
 
+For a newly introduced problem, create or update these shared study files in the solve worktree first, then merge them into `main` after the user approves the scaffold commit.
+
 ## Output Rules
 
 - Never stop at code only.
@@ -139,7 +145,7 @@ Also create or update:
 - Make the package useful under interview pressure and later review.
 - Preserve source details in `meta.md` and Markdown rather than in the directory tree.
 - Follow this repository's scaffold-only `main` branch model unless the user explicitly requests a different workflow.
-- When creating a new challenge, create or confirm the corresponding solve worktree as part of the task, but leave it scaffold-only unless implementation was explicitly requested.
+- When creating a new challenge, create or confirm the corresponding solve worktree as part of the task, author the initial scaffold there, ask before committing it, merge the shared scaffold into `main`, and then leave solve-worktree-only script setup prepared for the study session.
 
 ## File Guidance
 
@@ -186,7 +192,8 @@ Branch-aware behavior:
 
 - on `main`, keep the real behavioral assertions even when the implementation is still scaffolded
 - on solve branches, make those same assertions pass with the completed implementation
-- on solve branches, keep both `test` and `test:watch` scoped to the branch's own problem folder
+- on solve branches, keep both `test` and `test:watch` scoped to the branch's own problem folder when the worktree is being prepared for active study or implementation
+- when a new problem scaffold is being introduced, merge the shared test file back into `main` first, then leave the scoped solve-worktree script changes prepared locally in that worktree
 - on solve branches, verify the scoped scripts live in that worktree's `package.json` and that `node_modules` links back to the main worktree before handoff
 
 ### `explanation.md`

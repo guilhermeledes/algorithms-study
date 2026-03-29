@@ -32,29 +32,36 @@ At the beginning of each session:
 Use this sequence unless the repository later adopts a more specific documented workflow:
 
 1. Inspect current repository state and existing conventions.
-2. Create or update a study case under `studies/problems/<problem-slug>/`.
-3. Capture the problem summary, source platform, original source path or URL when known, constraints, examples, assumptions, and acceptance expectations in the study-case materials.
-4. Implement the smallest TypeScript solution that satisfies those expectations.
-5. Add or run lightweight problem-level validation alongside the solution.
-6. Update `studies/index.md` when a new problem study case is added or its status changes.
-7. Update `studies/roadmap.md` only when planned-study ordering or future target problems actually change.
-8. When a problem naturally has a brute-force baseline and a stronger optimized approach, preserve both explicitly in code and tests.
-9. Promote repeated structural conventions into repository docs only after they become stable across multiple problems.
+2. For a new problem, create or reuse the dedicated `solve/<problem-slug>` worktree first.
+3. Create or update the study case under `studies/problems/<problem-slug>/` in that solve worktree.
+4. Capture the problem summary, source platform, original source path or URL when known, constraints, examples, assumptions, and acceptance expectations in the study-case materials.
+5. Ask the user before creating a commit that should carry the scaffold or shared study-material changes.
+6. Merge the committed scaffold or shared study-material changes back into `main` so `main` remains the source of reusable unsolved packages.
+7. After the merge to `main`, leave any worktree-only study-session setup, such as scoped `package.json` test scripts, prepared in the solve worktree rather than merging those branch-local script changes to `main`.
+8. Implement the smallest TypeScript solution that satisfies the problem expectations only when the user explicitly asks for implementation work.
+9. Add or run lightweight problem-level validation alongside the solution or scaffold as appropriate.
+10. Update `studies/index.md` when a new problem study case is added or its status changes.
+11. Update `studies/roadmap.md` only when planned-study ordering or future target problems actually change.
+12. When a problem naturally has a brute-force baseline and a stronger optimized approach, preserve both explicitly in code and tests.
+13. Promote repeated structural conventions into repository docs only after they become stable across multiple problems.
 
 When working against `main`:
 
 1. Treat `main` as the branch for reusable scaffolding and study planning.
 2. Keep `solution.ts` scaffolded with explicit stubs such as `Not implemented` when the actual solution should remain unsolved on `main`.
 3. Keep the real behavioral tests on `main` even when the implementation is scaffolded, so unsolved challenges fail loudly until they are solved in their dedicated worktrees.
-4. Use a dedicated git worktree on a branch such as `solve/<problem-slug>` for real solved implementations and finished solution notes, and place that worktree under `/Users/guilhermeledes/projects/_worktrees/algorithms-study/solve-<problem-slug>`.
-5. Merge back only scaffold improvements, metadata improvements, or workflow/docs changes if `main` must remain unsolved.
-6. When introducing a new challenge, do not pre-solve the corresponding `solve/<problem-slug>` worktree unless the user explicitly asks for the implementation.
+4. For a new challenge, author the initial scaffold in the dedicated `solve/<problem-slug>` worktree first, then merge that scaffold back into `main` after an explicit user-approved commit.
+5. Use a dedicated git worktree on a branch such as `solve/<problem-slug>` for real solved implementations and finished solution notes, and place that worktree under `/Users/guilhermeledes/projects/_worktrees/algorithms-study/solve-<problem-slug>`.
+6. Merge back only scaffold improvements, metadata improvements, or workflow/docs changes if `main` must remain unsolved.
+7. Keep branch-local study-session setup, such as scoped solve-worktree test scripts, in the solve worktree after the merge instead of copying those script changes into `main`.
+8. When introducing a new challenge, do not pre-solve the corresponding `solve/<problem-slug>` worktree unless the user explicitly asks for the implementation.
 
 Testing command rules:
 
 - On `main`, keep `test` and `test:watch` global so they cover the full repository and expose unsolved scaffold failures.
 - In each `solve/<problem-slug>` worktree, scope both `test` and `test:watch` to `studies/problems/<problem-slug>` so the worktree stays green for its own challenge only.
-- In each `solve/<problem-slug>` worktree, update `package.json` as part of the branch setup so those scoped `test` and `test:watch` scripts are actually enforced before handoff.
+- Prepare those scoped solve-worktree scripts after the scaffold commit has been merged back into `main`, so `main` keeps the global scripts and the solve worktree keeps the branch-local study-session setup.
+- Treat those scoped `package.json` changes as solve-worktree-local setup unless the repository explicitly changes that policy later.
 - In each newly created `solve/<problem-slug>` worktree, create `node_modules` as a symbolic link to `/Users/guilhermeledes/projects/algorithms-study/node_modules` unless that path already exists for a deliberate reason.
 - Do not add duplicate testing aliases such as `study:test` or `study:file`.
 - Creating a new `solve/<problem-slug>` worktree is setup work only; leave the study package scaffolded there until the user explicitly asks to solve it.
@@ -135,14 +142,17 @@ Preferred study-case code and test pattern when applicable:
 - Match any new study work to `studies/problems/<problem-slug>/`.
 - Preserve source details exactly when they are provided in the prompt or source material.
 - Confirm whether the current task is intended for scaffold-only `main` or for a dedicated `solve/<problem-slug>` worktree.
+- For a new problem, create or reuse the solve worktree before authoring the scaffold.
 - For newly created `solve/<problem-slug>` worktrees, assume scaffold-only setup unless the user explicitly asks for a solved implementation.
-- If working in a `solve/<problem-slug>` worktree, verify that `package.json` scopes `test` and `test:watch` to `studies/problems/<problem-slug>` and that `node_modules` is linked back to the main worktree before treating the worktree as ready.
+- Ask before creating the scaffold commit that will be merged back into `main`.
+- If working in a `solve/<problem-slug>` worktree after the scaffold merge, verify that `package.json` scopes `test` and `test:watch` to `studies/problems/<problem-slug>` and that `node_modules` is linked back to the main worktree before treating the worktree as ready.
 
 ### End
 
 - Ensure any new structure remains consistent with this file.
 - Run the relevant lightweight validation for changed study cases.
 - When multiple implementations exist, verify which suites are expected to pass and which are intentionally scaffolded.
+- If a new study case was introduced, ensure the shared scaffold was committed only after explicit user confirmation and merged back into `main`.
 - On a `solve/<problem-slug>` worktree, verify that `package.json` still scopes `test` and `test:watch` to that problem folder, that `node_modules` still points to the main worktree install, and that `pnpm test` does not run unrelated problem suites.
 - Update `studies/index.md` status entries to reflect the final state of the study case.
 - Update `studies/roadmap.md` only when planning data changed.
