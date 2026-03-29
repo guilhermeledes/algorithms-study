@@ -9,6 +9,7 @@
 | Queue using Two Stacks          | HackerRank    | Unknown    | queues, stacks, simulation, amortized-analysis | Queue / Stack Simulation           | queue via two stacks | scaffolded | studies/problems/queue-using-two-stacks/         |
 | Ransom Note                     | HackerRank    | Easy       | hashing, strings, frequency-counting, word-count, case-sensitive | Hash Map / Frequency / Strings     | frequency counting | scaffolded | studies/problems/ransom-note/                    |
 | Remove Islands                  | Unspecified   | Medium     | matrix, graph, dfs, bfs             | DFS / BFS / Grid / Graph Traversal | graph traversal   | scaffolded | studies/problems/remove-islands/                 |
+| Two Strings                     | HackerRank    | Easy       | strings, hashing, set-intersection, substring-check | Hash Map / Frequency / Strings     | set intersection  | scaffolded | studies/problems/two-strings/                    |
 
 ## Post-Problem Reflection
 
