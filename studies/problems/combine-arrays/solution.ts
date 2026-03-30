@@ -1,27 +1,43 @@
 /*
  * Combine Arrays
- *
- * This file is intentionally scaffolded for later practice.
- * Use the corresponding `solve/combine-arrays` worktree for the completed implementation.
  */
 
-const notImplementedMessage =
-  "Not implemented yet; complete this in the solve/combine-arrays worktree.";
-
 export function combineArraysBruteForce(a: number[], b: number[]): number[] {
-  void a;
-  void b;
-  throw new Error(notImplementedMessage);
+  const result = [...a, ...b];
+
+  for (let i = 0; i < result.length; i++) {
+    for (let j = i + 1; j < result.length; j++) {
+      if (result[j]! < result[i]!) {
+        const temp = result[i]!;
+        result[i] = result[j]!;
+        result[j] = temp;
+      }
+    }
+  }
+
+  return result;
 }
 
 export function combineArraysOptimized(a: number[], b: number[]): number[] {
-  void a;
-  void b;
-  throw new Error(notImplementedMessage);
+  const result: number[] = [];
+  let i = 0,
+    j = 0;
+
+  while (i < a.length || j < b.length) {
+    const currA = a[i];
+    const currB = b[j];
+    if (currB === undefined || currB > currA!) {
+      result.push(currA!);
+      i++;
+      continue;
+    }
+    result.push(currB);
+    j++;
+  }
+
+  return result;
 }
 
 export function combineArrays(a: number[], b: number[]): number[] {
-  void a;
-  void b;
-  throw new Error(notImplementedMessage);
+  return combineArraysOptimized(a, b);
 }
