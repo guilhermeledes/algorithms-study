@@ -4,3 +4,4 @@ coverage/
 .vitest/
 *.tsbuildinfo
 .DS_Store
+.solves
